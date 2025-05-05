@@ -1,66 +1,82 @@
-# Cite Rite
+# NOTES.md – Cite Rite Frontend Implementation
 
-## Background
-GPTZero is developing Cite Rite, a tool that helps people see how much evidence there is for the claims found in a text, using AI, in order to help the increase the quality and transparency of the world's knowledge. In our app, users submit a piece of text, and Cite Rite will extract the testable claims in a text, find citations related to the given text, and extract the logical dependencies of the claims in the text.
+## Summary of Implementation
 
-### User Stories
-- As a student who uses AI to help write essays, I'd like to quickly understand which arguments of my writing are evidence-based (e.g., have high-authority citations), and which are not.
-- As a subscriber to independent journalist sources, I'd like to better understand the validitiy of claims made in certain articles.
+This implementation transforms the Cite Rite frontend from a basic JSON output into an intuitive, interactive interface matching the GPTZero brand aesthetic. The design focuses on clarity, usability, and a clean visual style that helps users understand relationships between claims and their supporting evidence.
 
-## The Challenge
-The frontend is in a poor state. The user interface is unattractive, and the scan result is outputted simply as a raw JSON string, which is inappropriate for a consumer-facing app. The frontend must be updated to clearly display the parts of the text that are claims and illustrate their relationship with the associated citations returned by the backend. 
+### ✅ Objective 1: Display Scan Results Intuitively
+- Replaced raw JSON with a hierarchical tree view of claims
+- Claims are visually distinguished by color based on whether they have citations
+- Clear parent-child relationship visualization with indentation and connecting lines
+- Citations are grouped under their respective claims with context
 
-### Objectives:
-1. Display Scan Results Intuitively:
-    - Replace the raw JSON output with a structured, interactive display of the Cite Rite scan results.
-    - Users should intuitively understand which parts of the inputted document are logical claims, and which citations are related to each claim.
-2. Enhance Interactivity:
-    - Allow users to interact with a claim to view more detailed information about its citations.
-    - Users should have the ability to get guidance on how to use the app and interpret the results.
-3. Improve UI/UX Design:
-    - Redesign the interface to be clean and aesthetically pleasing.
-4. Utilize best practices
-    - Submitted code should be readable, error-free, and utlize modern React best practices.
+### ✅ Objective 2: Enhance Interactivity
+- Created expandable/collapsible sections for both claim trees and citation details
+- Added citation counters for quick assessment of evidence strength
+- Implemented smooth state transitions with clear visual feedback
+- Included interactive elements for exploring claim relationships and citation details
 
-Bonus:
-- Show the relationship between claims, and their parents/children. We store extracted claims as a tree, where the current node logically supports its parent nodes, and the children nodes logically support its current nodes. For example, the claim "GPTZero moved to a larger Union Square office in 2023" is a child of the claim "GPTZero is growing its team in New York City and beyond".
+### ✅ Objective 3: Improve UI/UX Design
+- Implemented GPTZero's signature green/gray color scheme and typography
+- Created a clean, modern layout with appropriate spacing and visual hierarchy
+- Added visual cues (colors, icons) to highlight important information
+- Designed for readability with proper contrast and text sizing
 
-## Technical Details
-The frontend is not connected to an API. Instead, a mock API response has been given in `src/data/exampleResponse.json`. Logic in `api/sourceScan` simulates an API call which always returns the contents of `exampleResponse.json`. The given example response is what might be returned if the sample text was sent to a functional backend integrated with the Cite Rite machine learning model.
+### ✅ Objective 4: Utilize Best Practices
+- Used modern React patterns with functional components and hooks
+- Implemented TypeScript for type safety
+- Created reusable, modular components with clear responsibility separation
+- Added proper error handling and loading states
+- Used semantic HTML with accessibility considerations
 
-More details on the Cite Rite API request, response and general model schema is in `apidocs.html` and can be viewed in a browser at `http://localhost:3001/apidocs.html` when the frontend is running. Alternatively, the `html` file is a static file and can be opened with any browser.
+### ✅ Bonus: Relationship Visualization
+- Successfully implemented the parent-child relationship tree structure
+- Visual indentation shows logical hierarchy of claims
+- Claims can be expanded/collapsed to explore supporting evidence
+- Connecting lines visually reinforce the hierarchical structure
 
-The frontend is a next app. To run the development server:
+## Future Improvements (With 2 More Weeks)
 
-1. Install dependencies
-```bash
-npm i
-```
+### Enhanced Visualizations
+- **Graph View**: Add an alternative visualization using a force-directed graph to show relationships
+- **Original Text Highlighting**: Ability to see claims highlighted in the original document
+- **Citation Strength Indicators**: Visual indicators for citation quality/quantity
+- **Animated Transitions**: Smooth animations when expanding/collapsing claim trees
 
-2. Run the server
-```bash
-npm run dev
-```
+### Advanced Features
+- **Citation Quality Scoring**: Analyze and score citations based on source credibility
+- **Export Functionality**: Allow exporting results in various formats (PDF, markdown)
+- **Claim Filtering**: Filter by claim type, citation count, or specific topics
+- **Annotation Tools**: Allow users to add notes to claims and citations
+- **Version Comparison**: Compare multiple versions of the same document
+- **Collaborative Features**: Share and comment on analysis results
 
-3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Technical Improvements
+- **Client-Side Caching**: Cache analysis results for improved performance
+- **Progressive Web App**: Make the app installable and offline-capable
+- **Comprehensive Testing**: Add unit, integration, and end-to-end tests
+- **Keyboard Navigation**: Enhance keyboard accessibility throughout the app
+- **Server-Side Rendering**: Optimize for SEO and initial load performance
+- **Analytics Integration**: Track usage patterns to improve the user experience
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### User Experience Refinements
+- **Onboarding Tour**: Interactive tutorial for first-time users
+- **Customizable Interface**: Allow users to adjust visualization preferences
+- **Rich Text Editor**: Replace plain textarea with a rich text editor
+- **Citation Recommendations**: Suggest additional sources for uncited claims
+- **Batch Processing**: Allow uploading and processing multiple documents
+- **Native Mobile Apps**: Develop dedicated mobile applications
 
-## Constraints
-- We recommend spending two hours or less on the assessment (does not have to be continguous), although if you decide to take more time, please make a commit indicating your progress by the two hour mark. We will consider all of the work done.
-- You may install any npm dependencies necessary to meet all objectives.
-- You may use ChatGPT, Copilot, or any AI assistant to help you meet all objectives.
-- Please do not share or publish any aspects of this assignment.
+## Implementation Decisions
 
-## Evaluation Criteria
+1. **Tree Structure Visualization**: I chose a hierarchical tree view with indentation because it provides a familiar and intuitive way to represent parent-child relationships.
 
-The submission will be evaluated based on how well the solution satisfied the [objectives](#objectives). Objectives are displayed in order of prioritization. That is, the first objective is the most important to satisfy, then the second, and so on.
+2. **Color Scheme**: I used GPTZero's green for active elements and highlights, with neutral grays for the background and secondary elements, to maintain brand consistency.
 
-## Submission
-- Optionally create a file called `NOTES.md` in the project root add anything you'd like us to know about your submission. For example, if any instructions were unclear or you encountered problems in the provided code please let us know.
-- Push all your changes to a new *private* GitHub repository after completing the assessment and invite `jacob@gptzero.me`, `alex@gptzero.me`, and `edmond@gptzero.me` as contributors.
+3. **Progressive Disclosure**: Information is revealed progressively to avoid overwhelming users - citations are hidden by default and can be expanded when needed.
 
-We understand your time is valuable and we wish to thank you for taking the time to interview at GPTZero!
+4. **Responsive Design**: The layout adapts to different screen sizes, with a stacked view on mobile and side-by-side columns on larger screens.
 
-### Disclaimer
-This assessment is provided for the sole purpose of evaluating your skills in relation to the potential employment at GPTZero. The contents, challenges, and any provided code or documentation are confidential and proprietary to GPTZero. You are not permitted to share, redistribute, or use this material for any purpose other than for completing the assessment as directed. Any violation of these terms may lead to disqualification from the application process.
+5. **Visual Feedback**: Interactive elements provide clear visual feedback through color changes, icon rotations, and expanded sections.
+
+This implementation provides a solid foundation that meets all requirements while maintaining extensibility for future enhancements.

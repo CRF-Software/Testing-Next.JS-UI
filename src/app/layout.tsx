@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+// The Header will be imported in the page component to handle the onInfoClick prop
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cite Rite",
-  description: "The most advanced way to find citations that back up a document's claims.",
+  title: "Cite Rite by GPTZero",
+  description: "Analyze text to uncover claims and evidence with AI-powered Cite Rite by GPTZero",
 };
 
 export default function RootLayout({
@@ -17,12 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="w-full top-0 relative bg-slate-800 py-6 px-8">
-          <div className="flex flex-col gap-2">
-            <h1 className="font-semibold text-3xl">Cite Rite</h1>
-            <p>The most advanced way to find citations that back up a document's claims.</p>
-          </div>
-        </div>
+        {/* The Header component will be included in the page component */}
         {children}
       </body>
     </html>
