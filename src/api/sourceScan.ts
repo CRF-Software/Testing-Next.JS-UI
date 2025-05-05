@@ -1,6 +1,7 @@
 import exampleResponse from '../data/exampleResponse.json';
+import { ScanResult } from '../types/document-types';
 
-export const postSourceScan = async (text: string): Promise<string> => {
+export const postSourceScan = async (text: string): Promise<ScanResult> => {
   try {
     const response = {
       ok: true,
@@ -12,9 +13,7 @@ export const postSourceScan = async (text: string): Promise<string> => {
     }
 
     const responseBody = await response.json();
-    const responseBodyString = JSON.stringify(responseBody, null, 2);
-
-    return responseBodyString;
+    return responseBody as ScanResult;
   } catch (error) {
     console.error("Error occurred during source scan:", error);
     throw error;
