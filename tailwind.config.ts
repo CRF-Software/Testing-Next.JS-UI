@@ -1,6 +1,5 @@
-﻿import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,27 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'primary-blue': '#3B82F6', // Main blue color from GPTZero logo
+        'gptzero-green': '#16a34a', // Main green color from design
+        'gptzero-blue': '#3b82f6',  // Blue accent color
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
       },
       borderRadius: {
         'xl': '1rem',
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: 'none',
-            color: '#333',
-            a: {
-              color: '#3B82F6',
-              '&:hover': {
-                color: '#2563EB',
-              },
-            },
-          },
-        },
+        '2xl': '1.5rem',
       },
       boxShadow: {
         'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       },
     },
   },
@@ -37,5 +29,3 @@ const config: Config = {
     require('@tailwindcss/typography'),
   ],
 };
-
-export default config;
